@@ -1,0 +1,17 @@
+version: "2.2"
+
+services:
+  ping-server:
+    container_name: ping-server
+    build:
+      dockerfile: src/Dockerfile
+    restart: unless-stopped
+
+  proxy:
+    image: nginx:1.17
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+
