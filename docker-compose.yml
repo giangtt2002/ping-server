@@ -3,12 +3,16 @@ version: "2.2"
 services:
   ping-server:
     container_name: ping-server
+    ports:
+      - "8080:8080"
     build:
       dockerfile: src/Dockerfile
+    image: ping:lastest
     restart: unless-stopped
 
-  proxy:
-    image: nginx:1.17
+
+  nginx:
+    image: nginx:latest
     restart: unless-stopped
     ports:
       - "80:80"
